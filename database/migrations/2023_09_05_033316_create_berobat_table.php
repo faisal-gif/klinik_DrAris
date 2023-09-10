@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('berobat', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pasien');
-            $table->foreign('id_pasien')->references('id')->on('pasien');
-            $table->unsignedBigInteger('id_dokter');
-            $table->foreign('id_dokter')->references('id')->on('dokter');
-            $table->timestamp('tgl_berobat',$precision = 0);
-            $table->string('keluan_pasien');
+            $table->string('id_pasien');
+            $table->foreign('id_pasien')->references('nik')->on('pasien');
+            $table->string('nip_dokter');
+            $table->foreign('nip_dokter')->references('nip')->on('dokter');
+            $table->date('tgl_berobat');
+            $table->string('keluhan_pasien');
             $table->string('hasil_diagnosa');
+            $table->timestamps();
         });
     }
 

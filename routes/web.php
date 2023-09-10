@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\BerobatController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-Route::resource('dokter',DokterController::class);
-Route::resource('obat',ObatController::class);
-Route::resource('pasien',PasienController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('berobat/tambah/{nik}',[BerobatController::class,'tambah'])->name('berobat-tambah');
+Route::resource('berobat',BerobatController::class);
+Route::resource('dokter',DokterController::class);
+Route::resource('obat',ObatController::class);
+Route::resource('pasien',PasienController::class);

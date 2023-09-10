@@ -30,7 +30,12 @@ class DokterController extends Controller
     public function store(Request $request)
     {
         Dokter::create([
-            'nama_dokter' => $request->nama
+            'nip' => $request->nip,
+            'nama_dokter' => $request->nama,
+            'umur' => $request->umur,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp
         ]);
         return redirect()->route('dokter.index');
     }
@@ -57,6 +62,10 @@ class DokterController extends Controller
     public function update(Request $request, Dokter $dokter)
     {
         $dokter->nama_dokter = $request->nama;
+        $dokter->jenis_kelamin = $request->jenis_kelamin;
+        $dokter->alamat = $request->alamat;
+        $dokter->umur = $request->umur;
+        $dokter->no_hp = $request->no_hp;
         $dokter->save();
         return redirect()->route('dokter.index');
     }

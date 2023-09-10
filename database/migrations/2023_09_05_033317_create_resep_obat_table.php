@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_berobat');
             $table->foreign('id_berobat')->references('id')->on('berobat');
-            $table->unsignedBigInteger('id_obat');
-            $table->foreign('id_obat')->references('id')->on('obat');
+            $table->string('kode_obat');
+            $table->foreign('kode_obat')->references('kode')->on('obat');
+            $table->integer('dosis');
+            $table->integer('aturan_minum');
+            $table->integer('lama');
             $table->timestamps();
         });
     }

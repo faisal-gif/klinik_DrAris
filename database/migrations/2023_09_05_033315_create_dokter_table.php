@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('dokter', function (Blueprint $table) {
             $table->id();
+            $table->string('nip')->unique();
             $table->string('nama_dokter');
+            $table->integer('umur');
+            $table->enum('jenis_kelamin',['L','P']);
+            $table->string('alamat');
+            $table->string('no_hp');
             $table->timestamps();
         });
     }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berobat;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class PasienController extends Controller
 {
@@ -12,8 +14,8 @@ class PasienController extends Controller
      */
     public function index()
     {
-        $data=Pasien::all();
-        return view('pasien.index',compact('data'));
+        $data = Pasien::all();
+        return view('pasien.index', compact('data'));
     }
 
     /**
@@ -31,9 +33,13 @@ class PasienController extends Controller
     {
         Pasien::create(
             [
+                'nik' => $request->nik,
                 'nama_pasien' => $request->nama,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'umur' => $request->umur
+                'umur' => $request->umur,
+                'alamat' => $request->alamat,
+                'no_hp' => $request->no_hp,
+
             ]
         );
         return redirect()->route('pasien.index');
@@ -44,7 +50,8 @@ class PasienController extends Controller
      */
     public function show(Pasien $pasien)
     {
-        
+        $pasien->with('berobat.resep.obat')->get();
+        return view('pasien.detail-pasien', compact('pasien'));
     }
 
     /**
@@ -52,7 +59,8 @@ class PasienController extends Controller
      */
     public function edit(Pasien $pasien)
     {
-        return view('pasien.edit',compact('pasien'));
+
+        return view('pasien.edit', compact('pasien'));
     }
 
     /**
@@ -63,6 +71,8 @@ class PasienController extends Controller
         $pasien->nama_pasien = $request->nama;
         $pasien->jenis_kelamin = $request->jenis_kelamin;
         $pasien->umur = $request->umur;
+        $pasien->alamat = $request->alamat;
+        $pasien->no_hp = $request->no_hp;
         $pasien->save();
         return redirect()->route('pasien.index');
     }

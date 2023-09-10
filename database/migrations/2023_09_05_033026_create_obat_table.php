@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('obat', function (Blueprint $table) {
             $table->id();
+            $table->string('kode')->unique();
+            $table->string('kategori');
             $table->string('nama_obat');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

@@ -18,14 +18,23 @@
                         <div class="mb-3">
                             <label class="form-label">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="" class="form-control">
-                                <option value="pria" {{($pasien->jenis_kelamin === 'pria') ? 'Selected' : ''}}>Laki-Laki</option>
-                                <option value="wanita" {{($pasien->jenis_kelamin === 'wanita') ? 'Selected' : ''}}>Perempuan</option>
+                                <option value="L" {{($pasien->jenis_kelamin === 'L') ? 'Selected' : ''}}>Laki-Laki</option>
+                                <option value="P" {{($pasien->jenis_kelamin === 'P') ? 'Selected' : ''}}>Perempuan</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Umur</label>
                             <input type="number" name="umur" class="form-control" value="{{$pasien->umur}}" placeholder="20">
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Alamat</label>
+                            <textarea name="alamat" class="form-control" id=""  rows="3">{{$pasien->alamat}}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No Hp</label>
+                            <input type="number" name="no_hp" class="form-control" value="{{$pasien->no_hp}}" >
+                        </div>
+                        
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">
                                 Simpan

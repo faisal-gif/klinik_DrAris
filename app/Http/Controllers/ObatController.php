@@ -30,7 +30,10 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         Obat::create([
-            'nama_obat' => $request->nama
+            'kode' => $request->kode_obat,
+            'nama_obat' => $request->nama,
+            'kategori' => $request->kategori,
+            'harga' => $request->harga
         ]);
         return redirect()->route('obat.index');
     }
@@ -40,7 +43,7 @@ class ObatController extends Controller
      */
     public function show(Obat $obat)
     {
-        //
+        
     }
 
     /**
@@ -57,6 +60,9 @@ class ObatController extends Controller
     public function update(Request $request, Obat $obat)
     {
         $obat->nama_obat = $request->nama;
+        $obat->nama_obat = $request->nama;
+        $obat->kategori = $request->kategori;
+        $obat->harga = $request->harga;
         $obat->save();
         return redirect()->route('obat.index');
     }

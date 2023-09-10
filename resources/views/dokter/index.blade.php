@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="mb-3">
+                <a href="{{route('dokter.create')}}" class="btn btn-primary">Tambah</a>
+            </div>
             <div class="card">
                 <div class="card-header">Dokter</div>
 
@@ -11,8 +14,11 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th scope="col">NIP</th>
                                 <th scope="col">Nama</th>
-                               
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Umur</th>
+                                <th scope="col">No Hp</th>
                                 <th scope="col">Action</th>
 
                             </tr>
@@ -20,7 +26,17 @@
                         <tbody>
                             @foreach($data as $d)
                             <tr>
+                                <td>{{$d->nip}}</td>
                                 <td>{{$d->nama_dokter}}</td>
+                                <td>@if($d->jenis_kelamin === 'L')
+                                    Laki-laki
+                                    @elseif($d->jenis_kelamin === 'P')
+                                    Perempuan
+                                    @endif
+                                </td>
+                                <td>{{$d->umur}}</td>
+                                <td>{{$d->no_hp}}</td>
+
                                 <td>
                                     <form action="{{route('dokter.destroy',$d)}}" method="post">
                                         <a href="{{route('dokter.edit',$d)}}" class="btn btn-warning">Edit</a>

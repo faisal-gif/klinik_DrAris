@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Pasien extends Model
+class Resep extends Model
 {
     use HasFactory;
-    protected $table = 'pasien';
+    protected $table = 'resep_obat';
     protected $guarded = [];
 
-    public function berobat(): HasMany
+    public function obat(): BelongsTo
     {
-        return $this->hasMany(Berobat::class,'id_pasien','nik')->latest();
+        return $this->belongsTo(Obat::class,'kode_obat','kode');
     }
 }
-
