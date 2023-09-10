@@ -1,5 +1,5 @@
 
-## Cara Pengintalan
+## Cara Penginstallan
 
 - Ubah .env.example menjadi .env
 - jalankan perintah composer update
